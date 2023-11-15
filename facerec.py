@@ -33,11 +33,8 @@ def process_frame(frame):
 picam2 = Picamera2()
 preview_config = picam2.create_preview_configuration()
 picam2.configure(preview_config)
+picam2.start_preview()  # Correct method to start the preview
 picam2.start()
-
-# Create a preview window
-preview = Preview(picam2)
-preview.start()
 
 try:
     while True:
@@ -50,12 +47,13 @@ try:
         # Process the frame
         processed_frame = process_frame(rgb_frame)
 
-        # Display the processed frame
+        # Display the processed frame using OpenCV
         cv2.imshow('Face Recognition', processed_frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 finally:
     # Cleanup
+    picam2.stop_preview()  # Correct method to stop the preview
     picam2.stop()
     cv2.destroyAllWindows()
