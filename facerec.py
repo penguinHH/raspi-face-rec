@@ -31,7 +31,7 @@ def process_frame(frame):
 
 # Initialize Picamera2
 picam2 = Picamera2()
-preview_config = picam2.create_preview_configuration()
+preview_config = picam2.create_preview_configuration(main={"size": (1920, 1080)}))
 picam2.configure(preview_config)
 picam2.start_preview()  # Correct method to start the preview
 picam2.start()
