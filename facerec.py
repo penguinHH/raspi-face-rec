@@ -31,9 +31,9 @@ def process_frame(frame):
 
 # Initialize Picamera2
 picam2 = Picamera2()
-preview_config = picam2.create_preview_configuration(main={"size": (1920, 1080)})
+preview_config = picam2.create_preview_configuration(main={"size": (640, 480)})
 picam2.configure(preview_config)
-picam2.start_preview()  # Correct method to start the preview
+picam2.start_preview(fullscreen=True)  # Correct method to start the preview
 picam2.start()
 
 try:
